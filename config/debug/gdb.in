@@ -33,6 +33,17 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config GDB_V_8_1
+    bool
+    prompt "8.1"
+    select GDB_8_1_or_later
+
+config GDB_V_linaro_7_12
+    bool
+    prompt "linaro-7.2-2017.11"
+    depends on DEBUG_GDB_SHOW_LINARO
+    select GDB_8_1_or_later
+
 config GDB_V_7_10
     bool
     prompt "7.10"
@@ -178,6 +189,10 @@ config GDB_7_2_or_later
     bool
     select GDB_7_0_or_later
 
+config GDB_8_1_or_later
+    bool
+    select GDB_7_2_or_later
+	
 config GDB_7_0_or_later
     bool
     select GDB_HAS_PKGVERSION_BUGURL
@@ -197,6 +212,7 @@ config GDB_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "8.1" if GDB_V_8_1
     default "7.10" if GDB_V_7_10
     default "7.9.1" if GDB_V_7_9_1
     default "7.9" if GDB_V_7_9

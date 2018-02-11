@@ -1,6 +1,6 @@
 # Build script for automake
 
-CT_AUTOMAKE_VERSION=1.11.1
+CT_AUTOMAKE_VERSION=1.15.1
 
 do_companion_tools_automake_get() {
     CT_GetFile "automake-${CT_AUTOMAKE_VERSION}"    \

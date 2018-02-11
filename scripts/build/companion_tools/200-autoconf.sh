@@ -1,6 +1,6 @@
 # Build script for autoconf
 
-CT_AUTOCONF_VERSION=2.65
+CT_AUTOCONF_VERSION=2.69
 
 do_companion_tools_autoconf_get() {
     CT_GetFile "autoconf-${CT_AUTOCONF_VERSION}"    \
