@@ -27,6 +27,10 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config KERNEL_V_4_15_3
+    bool
+    prompt "4.15.3"
+
 config KERNEL_V_4_4_115
     bool
     prompt "4.4.115 (longterm)"
@@ -96,6 +100,7 @@ config KERNEL_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "4.15.3" if KERNEL_V_4_15_3
     default "4.4.115" if KERNEL_V_4_4_115
     default "4.4" if KERNEL_V_4_4
     default "4.3" if KERNEL_V_4_3
