@@ -1,6 +1,6 @@
 # Build script for make
 
-CT_MAKE_VERSION=3.81
+CT_MAKE_VERSION=4.2.1
 
 do_companion_tools_make_get() {
     CT_GetFile "make-${CT_MAKE_VERSION}"        \
