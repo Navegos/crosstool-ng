@@ -13,6 +13,17 @@ config COMP_TOOLS_FORCE_make_3_81
     select COMP_TOOLS
     select COMP_TOOLS_make
 
+# Tools that require make-4.21 to build should select this:
+config COMP_TOOLS_make_3_81_NEEDED
+    bool
+
+config COMP_TOOLS_FORCE_make_4_21
+    def_bool y
+    depends on COMP_TOOLS_make_3_81_NEEDED
+    depends on ! CONFIGURE_has_make421
+    select COMP_TOOLS
+    select COMP_TOOLS_make
+
 comment "READ HELP before you say 'Y' below !!!"
 
 config COMP_TOOLS

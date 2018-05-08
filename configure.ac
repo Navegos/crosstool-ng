@@ -212,35 +212,35 @@ AC_CACHE_CHECK([for GNU awk], [ac_cv_path__AWK],
 AC_SUBST([_AWK], [$ac_cv_path__AWK])
 
 #----------------------------------------
-# Check for GNU make 3.80 or above
+# Check for GNU make 4.20 or above
 AC_CACHE_VAL([ac_cv_path_MAKE],
     [AC_ARG_WITH([make],
         AS_HELP_STRING([--with-make=PATH],
-                       [Specify the full PATH to GNU make >= 3.80]),
+                       [Specify the full PATH to GNU make >= 4.20]),
         [ac_cv_path_MAKE=$withval])])
-AC_CACHE_CHECK([for GNU make >= 3.80], [ac_cv_path_MAKE],
+AC_CACHE_CHECK([for GNU make >= 4.20], [ac_cv_path_MAKE],
     [AC_PATH_PROGS_FEATURE_CHECK([MAKE], [gmake make],
         [[MAKE_ver=$($ac_path_MAKE --version 2>&1 \
-                     |$EGREP '^GNU Make (3.[89][[:digit:]]|[4-9])')
+                     |$EGREP '^GNU Make (4.[29][[:digit:]]|[1-9])')
           test -n "$MAKE_ver" && ac_cv_path_MAKE=$ac_path_MAKE ac_path_MAKE_found=:]],
         [AC_MSG_RESULT([no])
-         AC_MSG_ERROR([could not find GNU make >= 3.80])])])
+         AC_MSG_ERROR([could not find GNU make >= 4.20])])])
 AC_SUBST([MAKE], [$ac_cv_path_MAKE])
 AC_PROG_MAKE_SET
 
-# Check for GNU make 3.81 exactly, otherwise
+# Check for GNU make 4.21 exactly, otherwise
 # it will be built as a companion tool.
-AC_MSG_CHECKING([for make 3.81])
+AC_MSG_CHECKING([for make 4.21])
 AS_IF(
-      [test "$MAKE_ver" = "GNU Make 3.81"],
-      [make381="y"
+      [test "$MAKE_ver" = "GNU Make 4.21"],
+      [make4211="y"
        AC_MSG_RESULT([yes])
       ],
-      [make381=
+      [make4211=
        AC_MSG_RESULT([no])
       ]
      )
-ACX_SET_KCONFIG_OPTION([make381])
+ACX_SET_KCONFIG_OPTION([make4211])
 
 #----------------------------------------
 # Check for libtool >= 1.5.26
