@@ -2,6 +2,17 @@
 
 menu "Companion tools"
 
+# Tools that require make-4.21 to build should select this:
+config COMP_TOOLS_make_4_21_NEEDED
+    bool
+
+config COMP_TOOLS_FORCE_make_4_21
+    def_bool y
+    depends on COMP_TOOLS_make_4_21_NEEDED
+    depends on ! CONFIGURE_has_make421
+    select COMP_TOOLS
+    select COMP_TOOLS_make
+
 # Tools that require make-3.81 to build should select this:
 config COMP_TOOLS_make_3_81_NEEDED
     bool
@@ -20,8 +31,8 @@ config COMP_TOOLS
     prompt "Build some companion tools"
     help
       Crosstool-NG relies on some external tools to be recent enough, namely:
-        make = 3.81 (in some cases)
-        m4 >= 1.4.13
+        make = 4.21 (in some cases)
+        m4 >= 1.4.18
         autoconf >= 2.69
         automake >= 1.16.1
         libtool >= 2.4.6
