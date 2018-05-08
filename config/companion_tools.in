@@ -23,7 +23,7 @@ config COMP_TOOLS
         make = 3.81 (in some cases)
         m4 >= 1.4.13
         autoconf >= 2.69
-        automake >= 1.15.1
+        automake >= 1.16.1
         libtool >= 2.4.6
       
       If your system has older versions, we can build them for you,

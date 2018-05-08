@@ -37,6 +37,16 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config CC_GCC_V_8_1_0
+    bool
+    prompt "8.1.0"
+    select CC_GCC_8
+	
+config CC_GCC_V_8_0_1
+    bool
+    prompt "8.0.1"
+    select CC_GCC_8
+	
 config CC_GCC_V_7_3_0
     bool
     prompt "7.3.0"
@@ -288,6 +298,20 @@ config CC_GCC_7
     select CC_GCC_HAS_LIBSANITIZER
     select CC_SUPPORT_GOLANG
 
+config CC_GCC_8
+    bool
+    select CC_GCC_8_or_later
+    select CC_GCC_USE_GMP_MPFR
+    select CC_GCC_USE_MPC
+    select CC_GCC_HAS_GRAPHITE
+    select CC_GCC_HAS_LTO
+    select CC_GCC_HAS_PKGVERSION_BUGURL
+    select CC_GCC_HAS_BUILD_ID
+    select CC_GCC_HAS_LNK_HASH_STYLE
+    select CC_GCC_HAS_LIBQUADMATH
+    select CC_GCC_HAS_LIBSANITIZER
+    select CC_SUPPORT_GOLANG
+
 config CC_GCC_5_or_later
     bool
     select CC_GCC_4_9_or_later
@@ -296,8 +320,13 @@ config CC_GCC_7_or_later
     bool
     select CC_GCC_5_or_later
 
+config CC_GCC_8_or_later
+    bool
+    select CC_GCC_5_or_later
+
 config CC_GCC_latest
     bool
+    select CC_GCC_8_or_later
     select CC_GCC_7_or_later
     select CC_GCC_5_or_later
     select CC_GCC_USE_GMP_MPFR
@@ -323,7 +352,7 @@ config CC_GCC_USE_GRAPHITE
     select PPL_NEEDED if !CC_GCC_4_8_or_later
     select ISL_NEEDED if CC_GCC_4_8_or_later
     help
-      Enable the GRAPHITE loop optimsations.
+      Enable the GRAPHITE loop optimizations.
       
       On some systems (eg. Cygwin), PPL and/or CLooG (required to enable
       GRAPHITE) may not build properly (yet), so you'll have to say 'N'
@@ -396,6 +425,8 @@ config CC_GCC_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "8.1.0" if CC_GCC_V_8_1_0
+    default "8.0.1" if CC_GCC_V_8_0_1
     default "7.3.0" if CC_GCC_V_7_3_0
     default "linaro-7.2-2017.11" if CC_GCC_V_linaro_7_2
     default "5.2.0" if CC_GCC_V_5_2_0
