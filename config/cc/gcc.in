@@ -37,6 +37,37 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config CC_GCC_V_12_0_0
+    bool
+    prompt "12.0.0"
+    select CC_GCC_12
+
+config CC_GCC_V_linaro_12_0_0
+    bool
+    prompt "linaro-12.0.0"
+    depends on CC_GCC_SHOW_LINARO
+    select CC_GCC_12
+
+config CC_GCC_V_11_2_0
+    bool
+    prompt "11.2.0"
+    select CC_GCC_11
+
+config CC_GCC_V_11_1_0
+    bool
+    prompt "11.1.0"
+    select CC_GCC_11
+
+config CC_GCC_V_10_1_0
+    bool
+    prompt "10.1.0"
+    select CC_GCC_10
+
+config CC_GCC_V_9_1_0
+    bool
+    prompt "9.1.0"
+    select CC_GCC_9
+
 config CC_GCC_V_8_1_0
     bool
     prompt "8.1.0"
@@ -284,6 +315,28 @@ config CC_GCC_5
     select CC_GCC_HAS_LIBSANITIZER
     select CC_SUPPORT_GOLANG
 
+config CC_GCC_5_or_later
+    bool
+    select CC_GCC_4_9_or_later
+
+config CC_GCC_6
+    bool
+    select CC_GCC_6_or_later
+    select CC_GCC_USE_GMP_MPFR
+    select CC_GCC_USE_MPC
+    select CC_GCC_HAS_GRAPHITE
+    select CC_GCC_HAS_LTO
+    select CC_GCC_HAS_PKGVERSION_BUGURL
+    select CC_GCC_HAS_BUILD_ID
+    select CC_GCC_HAS_LNK_HASH_STYLE
+    select CC_GCC_HAS_LIBQUADMATH
+    select CC_GCC_HAS_LIBSANITIZER
+    select CC_SUPPORT_GOLANG
+
+config CC_GCC_6_or_later
+    bool
+    select CC_GCC_5_or_later
+
 config CC_GCC_7
     bool
     select CC_GCC_7_or_later
@@ -297,6 +350,10 @@ config CC_GCC_7
     select CC_GCC_HAS_LIBQUADMATH
     select CC_GCC_HAS_LIBSANITIZER
     select CC_SUPPORT_GOLANG
+
+config CC_GCC_7_or_later
+    bool
+    select CC_GCC_6_or_later
 
 config CC_GCC_8
     bool
@@ -312,20 +369,88 @@ config CC_GCC_8
     select CC_GCC_HAS_LIBSANITIZER
     select CC_SUPPORT_GOLANG
 
-config CC_GCC_5_or_later
-    bool
-    select CC_GCC_4_9_or_later
-
-config CC_GCC_7_or_later
-    bool
-    select CC_GCC_5_or_later
-
 config CC_GCC_8_or_later
     bool
-    select CC_GCC_5_or_later
+    select CC_GCC_7_or_later
+
+config CC_GCC_9
+    bool
+    select CC_GCC_9_or_later
+    select CC_GCC_USE_GMP_MPFR
+    select CC_GCC_USE_MPC
+    select CC_GCC_HAS_GRAPHITE
+    select CC_GCC_HAS_LTO
+    select CC_GCC_HAS_PKGVERSION_BUGURL
+    select CC_GCC_HAS_BUILD_ID
+    select CC_GCC_HAS_LNK_HASH_STYLE
+    select CC_GCC_HAS_LIBQUADMATH
+    select CC_GCC_HAS_LIBSANITIZER
+    select CC_SUPPORT_GOLANG
+
+config CC_GCC_9_or_later
+    bool
+    select CC_GCC_8_or_later
+
+config CC_GCC_10
+    bool
+    select CC_GCC_10_or_later
+    select CC_GCC_USE_GMP_MPFR
+    select CC_GCC_USE_MPC
+    select CC_GCC_HAS_GRAPHITE
+    select CC_GCC_HAS_LTO
+    select CC_GCC_HAS_PKGVERSION_BUGURL
+    select CC_GCC_HAS_BUILD_ID
+    select CC_GCC_HAS_LNK_HASH_STYLE
+    select CC_GCC_HAS_LIBQUADMATH
+    select CC_GCC_HAS_LIBSANITIZER
+    select CC_SUPPORT_GOLANG
+
+config CC_GCC_10_or_later
+    bool
+    select CC_GCC_9_or_later
+
+config CC_GCC_11
+    bool
+    select CC_GCC_11_or_later
+    select CC_GCC_USE_GMP_MPFR
+    select CC_GCC_USE_MPC
+    select CC_GCC_HAS_GRAPHITE
+    select CC_GCC_HAS_LTO
+    select CC_GCC_HAS_PKGVERSION_BUGURL
+    select CC_GCC_HAS_BUILD_ID
+    select CC_GCC_HAS_LNK_HASH_STYLE
+    select CC_GCC_HAS_LIBQUADMATH
+    select CC_GCC_HAS_LIBSANITIZER
+    select CC_SUPPORT_GOLANG
+
+config CC_GCC_11_or_later
+    bool
+    select CC_GCC_10_or_later
+
+config CC_GCC_12
+    bool
+    select CC_GCC_12_or_later
+    select CC_GCC_USE_GMP_MPFR
+    select CC_GCC_USE_MPC
+    select CC_GCC_HAS_GRAPHITE
+    select CC_GCC_HAS_LTO
+    select CC_GCC_HAS_PKGVERSION_BUGURL
+    select CC_GCC_HAS_BUILD_ID
+    select CC_GCC_HAS_LNK_HASH_STYLE
+    select CC_GCC_HAS_LIBQUADMATH
+    select CC_GCC_HAS_LIBSANITIZER
+    select CC_SUPPORT_GOLANG
+
+config CC_GCC_12_or_later
+    bool
+    select CC_GCC_11_or_later
 
 config CC_GCC_latest
     bool
+    select CC_GCC_12_or_later
+    select CC_GCC_11_or_later
+    select CC_GCC_10_or_later
+    select CC_GCC_9_or_later
     select CC_GCC_8_or_later
     select CC_GCC_7_or_later
     select CC_GCC_5_or_later
@@ -425,6 +550,12 @@ config CC_GCC_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "12.0.0" if CC_GCC_V_12_0_0
+    default "linaro-12.0.0" if CC_GCC_V_linaro_12_0_0
+    default "11.2.0" if CC_GCC_V_11_2_0
+    default "11.1.0" if CC_GCC_V_1_1_0
+    default "10.1.0" if CC_GCC_V_10_1_0
+    default "9.1.0" if CC_GCC_V_9_1_0
     default "8.1.0" if CC_GCC_V_8_1_0
     default "8.0.1" if CC_GCC_V_8_0_1
     default "7.3.0" if CC_GCC_V_7_3_0

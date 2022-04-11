@@ -29,7 +29,7 @@ do_gcc_get() {
             YYMM=`echo ${CT_CC_GCC_VERSION} |cut -d- -f3 |${sed} -e 's,^..,,'`
             CT_GetFile "gcc-${CT_CC_GCC_VERSION}"                                                               \
                        "http://launchpad.net/gcc-linaro/${linaro_series}/${linaro_version}/+download"       \
-                       https://releases.linaro.org/${YYMM}/components/toolchain/gcc-linaro/${linaro_series} \
+                       https://releases.linaro.org/archive/${YYMM}/components/toolchain/gcc-linaro/${linaro_series} \
                        http://cbuild.validation.linaro.org/snapshots
         fi
 

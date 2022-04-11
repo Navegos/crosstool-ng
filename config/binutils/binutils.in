@@ -25,6 +25,46 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config BINUTILS_V_2_38
+    bool
+    prompt "2.38"
+    select BINUTILS_2_38_or_later
+
+config BINUTILS_V_2_37
+    bool
+    prompt "2.37"
+    select BINUTILS_2_37_or_later
+
+config BINUTILS_V_2_36
+    bool
+    prompt "2.36"
+    select BINUTILS_2_36_or_later
+
+config BINUTILS_V_2_35
+    bool
+    prompt "2.35"
+    select BINUTILS_2_35_or_later
+
+config BINUTILS_V_2_34
+    bool
+    prompt "2.34"
+    select BINUTILS_2_34_or_later
+
+config BINUTILS_V_2_33
+    bool
+    prompt "2.33"
+    select BINUTILS_2_33_or_later
+
+config BINUTILS_V_2_32
+    bool
+    prompt "2.32"
+    select BINUTILS_2_32_or_later
+
+config BINUTILS_V_2_31
+    bool
+    prompt "2.31"
+    select BINUTILS_2_31_or_later
+
 config BINUTILS_V_2_30
     bool
     prompt "2.30"
@@ -120,6 +160,14 @@ config BINUTILS_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "2.38" if BINUTILS_V_2_38
+    default "2.37" if BINUTILS_V_2_37
+    default "2.36" if BINUTILS_V_2_36
+    default "2.35" if BINUTILS_V_2_35
+    default "2.34" if BINUTILS_V_2_34
+    default "2.33" if BINUTILS_V_2_33
+    default "2.32" if BINUTILS_V_2_32
+    default "2.31" if BINUTILS_V_2_31
     default "2.30" if BINUTILS_V_2_30
     default "2.25.1" if BINUTILS_V_2_25_1
     default "linaro-2.25.0-2015.01-2" if BINUTILS_LINARO_V_2_25
@@ -134,6 +182,38 @@ config BINUTILS_VERSION
     default "2.20.1a" if BINUTILS_V_2_20_1a
     default "2.19.1a" if BINUTILS_V_2_19_1a
     default "2.18a" if BINUTILS_V_2_18a
+
+config BINUTILS_2_38_or_later
+    bool
+    select BINUTILS_2_37_or_later
+
+config BINUTILS_2_37_or_later
+    bool
+    select BINUTILS_2_36_or_later
+
+config BINUTILS_2_36_or_later
+    bool
+    select BINUTILS_2_35_or_later
+
+config BINUTILS_2_35_or_later
+    bool
+    select BINUTILS_2_34_or_later
+
+config BINUTILS_2_34_or_later
+    bool
+    select BINUTILS_2_33_or_later
+
+config BINUTILS_2_33_or_later
+    bool
+    select BINUTILS_2_32_or_later
+
+config BINUTILS_2_32_or_later
+    bool
+    select BINUTILS_2_31_or_later
+
+config BINUTILS_2_31_or_later
+    bool
+    select BINUTILS_2_30_or_later
 
 config BINUTILS_2_30_or_later
     bool

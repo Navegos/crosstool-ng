@@ -96,6 +96,13 @@ do_libc() {
 
     CT_mkdir_pushd "${CT_BUILD_DIR}/build-mingw-w64-crt"
 
+    if [ -f ${CT_SRC_DIR}/mingw-w64-${CT_WINAPI_VERSION_DOWNLOADED}/mingw-w64-crt/misc/mkstemp.c ]; then
+        CT_DoExecLog DEBUG echo "Patching mingw's broken implementation of mkstemp() (see https://sourceforge.net/p/mingw-w64/bugs/471/)"
+        CT_DoExecLog DEBUG sed -i \
+            's/_O_EXCL | _O_TEMPORARY | _O_BI/_O_EXCL | _O_BI/g' \
+            ${CT_SRC_DIR}/mingw-w64-${CT_WINAPI_VERSION_DOWNLOADED}/mingw-w64-crt/misc/mkstemp.c
+    fi
+
     do_set_mingw_install_prefix
     CT_DoExecLog CFG                                                                  \
     "${CT_SRC_DIR}/mingw-w64-${CT_WINAPI_VERSION_DOWNLOADED}/mingw-w64-crt/configure" \

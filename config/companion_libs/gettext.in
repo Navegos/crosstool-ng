@@ -6,6 +6,10 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config GETTEXT_V_0_21_0_0
+    bool
+    prompt "0.21"
+
 config GETTEXT_V_0_19_8_1
     bool
     prompt "0.19.8.1"
@@ -20,5 +24,6 @@ config GETTEXT_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "0.21" if GETTEXT_V_0_21_0_0
     default "0.19.8.1" if GETTEXT_V_0_19_8_1
     default "0.19.6" if GETTEXT_V_0_19_6

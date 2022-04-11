@@ -36,11 +36,27 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config LIBC_NEWLIB_LINARO_V_4_2_0
+    bool
+    prompt "Linaro 12.0.0"
+    depends on CC_NEWLIB_SHOW_LINARO
+    select LIBC_NEWLIB_4_2_0_or_later
+
 config LIBC_NEWLIB_LINARO_V_3_0_0
     bool
     prompt "Linaro 7.2.0-2017.11"
     depends on CC_NEWLIB_SHOW_LINARO
-    select LIBC_NEWLIB_3_0
+    select LIBC_NEWLIB_3_0_0_or_later
+
+config LIBC_NEWLIB_4_2_0
+    bool
+    prompt "4.2.0"
+    select LIBC_NEWLIB_4_2_0_or_later
+
+config LIBC_NEWLIB_3_0_0
+    bool
+    prompt "3.0.0"
+    select LIBC_NEWLIB_3_0_0_or_later
 
 config LIBC_NEWLIB_LINARO_V_2_2_0
     bool
@@ -95,10 +111,6 @@ config LIBC_NEWLIB_CUSTOM
     The choosen library version shall be not downloaded. Instead use
     a custom location to get the source.
 
-config LIBC_NEWLIB_3_0
-    bool
-    select LIBC_NEWLIB_2_2_or_later
-
 config LIBC_NEWLIB_2_2
     bool
     select LIBC_NEWLIB_2_2_or_later
@@ -110,6 +122,14 @@ config LIBC_NEWLIB_2_1
 config LIBC_NEWLIB_2_0
     bool
     select LIBC_NEWLIB_2_0_or_later
+
+config LIBC_NEWLIB_4_2_0_or_later
+    bool
+    select LIBC_NEWLIB_3_0_0_or_later
+
+config LIBC_NEWLIB_3_0_0_or_later
+    bool
+    select LIBC_NEWLIB_2_2_or_later
 
 config LIBC_NEWLIB_2_2_or_later
     bool
@@ -141,6 +161,9 @@ config LIBC_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "4.2.0" if LIBC_NEWLIB_4_2_0
+    default "4.2.0" if LIBC_NEWLIB_LINARO_V_4_2_0
+    default "3.0.0" if LIBC_NEWLIB_3_0_0
     default "3.0.0" if LIBC_NEWLIB_LINARO_V_3_0_0
     default "linaro-2.2.0-2015.01" if LIBC_NEWLIB_LINARO_V_2_2_0
     default "2.2.0" if LIBC_NEWLIB_V_2_2_0

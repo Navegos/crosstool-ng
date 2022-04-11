@@ -6,6 +6,12 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config ISL_V_0_24
+    bool
+    prompt "0.24"
+    depends on CLOOG_0_20_0_or_later || CC_GCC_10_or_later
+    select ISL_V_0_14_or_later
+
 config ISL_V_0_19
     bool
     prompt "0.19"
@@ -49,6 +55,8 @@ config ISL_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "0.24" if ISL_V_0_24
+    default "0.19" if ISL_V_0_19
     default "0.18" if ISL_V_0_18
     default "0.14" if ISL_V_0_14
     default "0.12.2" if ISL_V_0_12_2

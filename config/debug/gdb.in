@@ -33,6 +33,11 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config GDB_V_12_0
+    bool
+    prompt "12.0"
+    select GDB_12_0_or_later
+
 config GDB_V_8_1
     bool
     prompt "8.1"
@@ -192,7 +197,11 @@ config GDB_7_2_or_later
 config GDB_8_1_or_later
     bool
     select GDB_7_2_or_later
-	
+
+config GDB_12_0_or_later
+    bool
+    select GDB_8_1_or_later
+
 config GDB_7_0_or_later
     bool
     select GDB_HAS_PKGVERSION_BUGURL
@@ -212,6 +221,7 @@ config GDB_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "12.0" if GDB_V_12_0
     default "8.1" if GDB_V_8_1
     default "7.10" if GDB_V_7_10
     default "7.9.1" if GDB_V_7_9_1
